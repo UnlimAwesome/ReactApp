@@ -1,23 +1,13 @@
-import logo from './logo.svg';
+import React from "react";
 import './App.css';
+import Pattern from "./components/Pattern/Pattern";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Pattern width={174} height={174} r={2.5} cx={2.5} cy={2.5} id={"smaller-pattern"} fill={"url(#smaller-pattern)"}/>
+        <Pattern width={199} height={199} r={2} cx={2} cy={2} id={"bigger-pattern"} fill={"url(#bigger-pattern)"}/>
+
     </div>
   );
 }
