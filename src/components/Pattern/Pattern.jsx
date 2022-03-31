@@ -1,5 +1,4 @@
 import React from 'react';
-import Circle from "../Circle/Circle";
 import './Pattern.css';
 
 const Pattern = ({fill, id, width, height, ...props}) => {
