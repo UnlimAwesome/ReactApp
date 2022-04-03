@@ -1,10 +1,10 @@
 .card{
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    border: 5px solid black;
     width: max-content;
-    margin: 40px 0 0 40px;
+    margin: 0 20px 0 20px;
 }
 
 .card img{
@@ -12,3 +12,19 @@
     height: 320px;
     object-fit: cover;
 }
+.card_id{
+    font-size: 40px;
+}
+.card:focus .card_header,
+.card:focus .card_text{
+    color: orange;
+}
+
+.clicked .card_header,
+.clicked .card_text{
+    color: orange;
+}
+/*
+.moving{
+    transform: translateX(330px);
+}*/

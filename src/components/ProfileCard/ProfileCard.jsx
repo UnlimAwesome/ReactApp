@@ -1,16 +1,26 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './ProfileCard.css';
 
 const ProfileCard = ({card}) => {
-    let path="https://i.pravatar.cc/150?img=" + Math.floor(Math.random()*(100-1)+1);
-/*    document.getElementsByClassName('card_pic').src =path;*/
-    console.log(path);
+    const [style, setStyle] = useState()
+
+    const changeStyle = ({style}) =>{
+        if ({style}==="clicked"){
+            console.log('prikol')
+            setStyle("undefined")
+        }
+        else{
+            setStyle("clicked");
+        }
+
+    }
+
     return (
-        <div className="card">
-            <img src="https://i.pravatar.cc/300"/>
-{/*            <img className="card_pic"/>*/}
+        <div className={'card' +' '+ style} onClick={changeStyle}>
+            <img className="card_pic" src="https://i.pravatar.cc/300/"/>
             <div className="card_header">{card.name}</div>
             <div className="card_text">{card.company.name}</div>
+            <div className="card_id">{card.id}</div>
         </div>
     );
 };

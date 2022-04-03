@@ -1,5 +1,17 @@
-.slider_content{
-    display: flex;
-    flex-direction: row;
-    width: 80%;
+.slider{
+    margin-left: 330px;
 }
+.slider_content{
+    width: 1320px;
+    overflow: hidden;
+}
+
+.moving{
+    width: 100%;
+    display: flex;
+    transition: translate;
+    transition-property: transform;
+    transition-duration: 300ms;
+    transition-timing-function: ease-in-out;
+}
+

@@ -1,6 +1,7 @@
-import React, {useState, useEffect, Children} from 'react';
+import React, {useState, useEffect, Children, cloneElement} from 'react';
 import ProfileCard from "../ProfileCard/ProfileCard";
 import "./Slider.css";
+import CardList from "../CardList/CardList";
 
 const Slider = () => {
     const [cards, setCard] = useState([
@@ -236,27 +237,74 @@ const Slider = () => {
         }
     ])
     const [translating, setTranslating] = useState(0)
-    const CardWidth = 330;
+    const cardWidth = 330;
+    const [leftCardID,setLeftCardID]=useState(1);
+    const [rightCardID,setRightCardID]=useState(10);
+    const style = {
+
+    }
 
     const leftClick=()=>{
-
+        setTranslating((currentTranslation)=>{
+            let newTranslation = currentTranslation + cardWidth;
+            if (newTranslation >0){
+                setCard([...cards.filter(card=>card.id>=leftCardID), ...cards.filter(card=>card.id<=rightCardID)])
+                if ({...leftCardID}!==1) {
+                    setLeftCardID(leftCardID - 1);
+                    setRightCardID(rightCardID -1);
+                } else {
+                    setLeftCardID(1);
+                    setRightCardID(10);
+                }
+                /*newTranslation=0;*/
+            }
+            console.log({leftCardID}, {rightCardID},newTranslation);
+            return newTranslation;
+        })
     }
     const rightClick=()=>{
-        setTranslating((currentTranslation)=>{})
-        const newTranslation = currentTranslation - cardWidth;
-        return newTranslation;
+        setTranslating((currentTranslation)=>{
+            let newTranslation = currentTranslation - cardWidth;
+            if (newTranslation <=-330*5){
+                if ({...rightCardID}===10) {
+                    setRightCardID(1);
+                    setLeftCardID(2);
+                    console.log("==10", leftCardID,rightCardID,newTranslation)
+                } else {
+                    setRightCardID(rightCardID + 1);
+                    setLeftCardID(leftCardID + 1);
+                    console.log("!==10", {leftCardID},{rightCardID},newTranslation)
+            }
+            setCard([...cards.filter(card=>card.id>=leftCardID),...cards.filter(card=>card.id<=rightCardID)])
+                /*newTranslation = -330*6;*/
+
+            }
+/*            console.log(leftCardID,rightCardID,newTranslation);*/
+            return newTranslation;
+        })
+
     }
+   /* const newRightCard = {
+        ...cards, id: cards[0].id
+    };
+    const newLeftCard = {
+        ...cards, id: cards[cards.length - 1].id
+    }
+    const createRightCard=()=>{
+        setCard([...cards, newRightCard])
+    }
+    const createLeftCard=()=>{
+        setCard([newLeftCard,...cards])
+    }*/
     return (
         <div className="slider">
             <div className="slider_buttons">
-                <button className="slider_button_left" onClick={()=>{leftClick}}>left</button>
-                <button className="slider_button_right" onClick={()=>{rightClick}}>right</button>
+                <button className="slider_button_left" onClick={leftClick}>left</button>
+                <button className="slider_button_right" onClick={rightClick}>right</button>
             </div>
-            <div className="slider_content" style={{
-                transform:`translateX(0)`,
-            }}>{cards.map(card =>
-                <ProfileCard card={card} key={card.id}/>
-            )}</div>
+            <div className="slider_content" >
+                <CardList cards={cards} translating={translating}/>
+            </div>
         </div>
     );
 };
