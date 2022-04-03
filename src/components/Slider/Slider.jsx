@@ -284,18 +284,6 @@ const Slider = () => {
         })
 
     }
-   /* const newRightCard = {
-        ...cards, id: cards[0].id
-    };
-    const newLeftCard = {
-        ...cards, id: cards[cards.length - 1].id
-    }
-    const createRightCard=()=>{
-        setCard([...cards, newRightCard])
-    }
-    const createLeftCard=()=>{
-        setCard([newLeftCard,...cards])
-    }*/
     return (
         <div className="slider">
             <div className="slider_buttons">
