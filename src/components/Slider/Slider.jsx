@@ -1,10 +1,10 @@
-import React, {useState, useEffect, Children, cloneElement} from 'react';
+import React, {useState} from 'react';
 import ProfileCard from "../ProfileCard/ProfileCard";
-import "./Slider.css";
-import CardList from "../CardList/CardList";
+import "./Slider.css"
 
-const Slider = () => {
-    const [cards, setCard] = useState([
+const Slider = ({setpost}) => {
+    const cardWidth = 330;
+    const [cards, setCards]=useState([
         {
             "id": 1,
             "name": "Leanne Graham",
@@ -235,63 +235,46 @@ const Slider = () => {
                 "bs": "target end-to-end models"
             }
         }
-    ])
-    const [translating, setTranslating] = useState(0)
-    const cardWidth = 330;
-    const [leftCardID,setLeftCardID]=useState(1);
-    const [rightCardID,setRightCardID]=useState(10);
-    const style = {
+    ]);
+    const [translation, setTranslation] = useState(0);
+    const [leftButtonStyle, setLeftButtonStyle] = useState();
+    const [rightButtonStyle, setRightButtonStyle] = useState();
 
-    }
-
-    const leftClick=()=>{
-        setTranslating((currentTranslation)=>{
-            let newTranslation = currentTranslation + cardWidth;
-            if (newTranslation >0){
-                setCard([...cards.filter(card=>card.id>=leftCardID), ...cards.filter(card=>card.id<=rightCardID)])
-                if ({...leftCardID}!==1) {
-                    setLeftCardID(leftCardID - 1);
-                    setRightCardID(rightCardID -1);
-                } else {
-                    setLeftCardID(1);
-                    setRightCardID(10);
-                }
-                /*newTranslation=0;*/
-            }
-            console.log({leftCardID}, {rightCardID},newTranslation);
-            return newTranslation;
-        })
-    }
     const rightClick=()=>{
-        setTranslating((currentTranslation)=>{
-            let newTranslation = currentTranslation - cardWidth;
-            if (newTranslation <=-330*5){
-                if ({...rightCardID}===10) {
-                    setRightCardID(1);
-                    setLeftCardID(2);
-                    console.log("==10", leftCardID,rightCardID,newTranslation)
-                } else {
-                    setRightCardID(rightCardID + 1);
-                    setLeftCardID(leftCardID + 1);
-                    console.log("!==10", {leftCardID},{rightCardID},newTranslation)
-            }
-            setCard([...cards.filter(card=>card.id>=leftCardID),...cards.filter(card=>card.id<=rightCardID)])
-                /*newTranslation = -330*6;*/
-
-            }
-/*            console.log(leftCardID,rightCardID,newTranslation);*/
+        setTranslation((currentTranslation)=>{
+            const newTranslation = Math.max(currentTranslation -cardWidth,-330*6);
+            if (newTranslation ===-330*6){setRightButtonStyle({cursor: `default`, backgroundColor:`red`})}
+            if (newTranslation !==0){setLeftButtonStyle({cursor: `pointer`, backgroundColor:`#FE8700`})}
+            console.log(newTranslation);
             return newTranslation;
-        })
+        });
 
     }
+
+    const LeftClick=()=>{
+        setTranslation((currentTranslation)=>{
+            const newTranslation = Math.min(currentTranslation + cardWidth, 0);
+            if (newTranslation ===0){setLeftButtonStyle({cursor: `default`, backgroundColor:`red`})}
+            if (newTranslation !==-330*6){setRightButtonStyle({cursor: `pointer`, backgroundColor:`#FE8700`})}
+            console.log(newTranslation);
+            return newTranslation;
+        });
+    }
+
+    const showPosts=(activeCard)=>{
+        setpost(activeCard);
+    }
+
     return (
         <div className="slider">
-            <div className="slider_buttons">
-                <button className="slider_button_left" onClick={leftClick}>left</button>
-                <button className="slider_button_right" onClick={rightClick}>right</button>
+            <div className="buttons">
+                <button className="left_button" style={leftButtonStyle} onClick={LeftClick}>left</button>
+                <button className="right_button" style={rightButtonStyle} onClick={rightClick}>right</button>
             </div>
-            <div className="slider_content" >
-                <CardList cards={cards} translating={translating}/>
+            <div className="cards">
+                <div className="moving" style={{transform:`translateX(${translation}px)`}}>{cards.map((card) =>
+                    <ProfileCard show={showPosts} card={card} key={card.id}/>
+                )}</div>
             </div>
         </div>
     );
