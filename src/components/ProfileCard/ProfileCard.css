@@ -11,8 +11,35 @@
     width: 290px;
     height: 320px;
     object-fit: cover;
+    position: relative;
+}
+.card_header{
+    font-size: 24px;
+    line-height: 36px;
+}
+.card_text{
+    font-size: 18px;
+    line-height: 27px;
+}
+
+.card img::after{
+
 }
 .card_id{
     font-size: 40px;
 }
 
+.active_card .card_text,
+.active_card .card_header{
+    color: #FE8700;
+    position: relative;
+    top: -3px;
+}
+
+.active_card .card_header::before{
+    content: '';
+    display: block;
+    width: 290px;
+    height: 3px;
+    background-color: #FE8700;
+}

@@ -8,7 +8,8 @@ const ProfileCard = ({card, show}) => {
     const changePosts=()=> {
         setStyle("active_card");
         const activeCard = card.id;
-        show(activeCard);
+        const activeCardTitle =card.name;
+        show(activeCard, activeCardTitle);
     }
     return (
         <div className={`card ${style}`} onClick={changePosts}>

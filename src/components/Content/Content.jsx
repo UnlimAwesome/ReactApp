@@ -605,7 +605,7 @@ const Content = () => {
             "body": "cupiditate quo est a modi nesciunt soluta\nipsa voluptas error itaque dicta in\nautem qui minus magnam et distinctio eum\naccusamus ratione error aut"
         }
     ]);
-    const [posts,setPosts] = useState([
+    const [posts,setPosts] =useState([
         {
             "userId": 1,
             "id": 1,
@@ -1207,15 +1207,22 @@ const Content = () => {
             "body": "cupiditate quo est a modi nesciunt soluta\nipsa voluptas error itaque dicta in\nautem qui minus magnam et distinctio eum\naccusamus ratione error aut"
         }
     ]);
-    const choosePosts=(post)=>{
+    const [listHeader, setListHeader] = useState("PEE PEE POO POO")
+    const choosePosts=(post, activeCardTitle)=>{
         console.log(post);
-        setPosts(postList);
-        setPosts(posts.filter((item)=>item.userId===post));
+        let clone = [];
+        for (let key in postList) {
+            clone[key] = postList[key];
+        }
+        setListHeader(activeCardTitle);
+        setPosts(clone.filter((item)=>(item.userId===post)));
+        console.log({...posts});
     }
 
     return (
         <div>
             <Slider setpost={choosePosts}/>
+            <h2 className="postList_header">{listHeader}</h2>
             <PostList posts={posts}/>
         </div>
     );
