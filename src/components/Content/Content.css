@@ -1,0 +1,26 @@
+.postList_header {
+    font-size: 48px;
+    line-height: 48px;
+    font-weight: 600;
+}
+
+.postList_header::before{
+    content: '';
+}
+
+.postList{
+    margin-top: 50px;
+    width: 1000px;
+    margin-left: auto;
+    position: relative;
+}
+
+.commas{
+    position: absolute;
+    left:-134px;
+}
+
+.content{
+    position: relative;
+    z-index: 10;
+}

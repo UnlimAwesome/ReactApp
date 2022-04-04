@@ -3,4 +3,68 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    color: #606F81;
+}
+
+.page{
+    height: 100%;
+    width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.page_header{
+    margin: 0 auto;
+}
+
+.page_title{
+    margin-top: 44px;
+    font-size: 48px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.page_subtitle{
+    margin-top: 19px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+    text-align: center;
+    width: 432px;
+}
+
+h1,h2,h3{
+    color: #384758;
+}
+
+.pattern{
+    position: absolute;
+}
+
+.right_pattern{
+    right: -15px;
+    top: 245px;
+}
+
+.left_pattern{
+    left: 7px;
+    top: 930px;
+}
+
+.pattern .circle{
+    position: relative;
+}
+.right_pattern .circle{
+    top: -3px;
+    right: -20px;
+}
+
+.left_pattern .circle{
+    left: -7px;
+    top:-15px;
 }

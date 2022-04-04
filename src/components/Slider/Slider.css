@@ -1,3 +1,8 @@
+.slider{
+    margin-top: 31px;
+    margin-right: 13px;
+}
+
 .cards{
     width: 1320px;
     overflow: hidden;
@@ -7,18 +12,21 @@
     flex-direction: row;
 }
 
+.buttons{
+    display: flex;
+    justify-content: center;
+}
+
 .slider button{
-    width: 150px;
-    height: 50px;
     cursor: pointer;
+    background-color: white;
+    border: none;
 }
 
 .left_button{
-    background-color: red;
-    cursor: default;
+    margin-right: 19px;
 }
 
-.right_button{
-    background-color: #FE8700;
+.cards{
+    margin-top: 20px;
 }
-

@@ -1,9 +1,8 @@
 import React from 'react';
-import './Pattern.css';
 
-const Pattern = ({fill, id, width, height, ...props}) => {
+const Pattern = ({fill, id, width, height, className, ...props}) => {
     return (
-            <div className="pattern">
+            <div className={`pattern ${className}`} >
                 <svg width={width} height={height}>
                     <defs>
                         <pattern id={id} x="0" y="0" width="13" height="13" patternUnits="userSpaceOnUse">
